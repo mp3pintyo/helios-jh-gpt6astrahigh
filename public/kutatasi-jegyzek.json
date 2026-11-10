@@ -1,0 +1,586 @@
+{
+  "title": "A Huang-akta",
+  "asOf": "2026-11-10",
+  "language": "hu",
+  "sourceLanguages": [
+    "hu",
+    "en",
+    "zh",
+    "ja",
+    "de",
+    "fr"
+  ],
+  "method": "Dátumhoz kötött, forráshoz rendelt kutatás. Tény, sajtóállítás és saját feltételes elemzés elkülönítve. A 444-tétel csak nyilvános bevezető; a 20. tétel csak cím és metaadat.",
+  "sources": [
+    {
+      "id": 1,
+      "lang": "HU",
+      "outlet": "444",
+      "date": "2026-11-09",
+      "type": "Sajtó",
+      "title": "Pénz, szex, AI, Kína – ezeken reccsenhet meg…",
+      "url": "https://444.hu/2026/11/09/penz-szex-ai-kina-ezeken-reccsenhet-meg-most-nemcsak-az-nvidia-de-akar-a-vilaggazdasag-is",
+      "note": "A nyomozás kiindulópontja. A szabadon olvasható bevezetőt ellenőriztük; az előfizetéses folytatást nem. Az ottani teljes érvelésre nem hivatkozunk.",
+      "family": "444",
+      "access": "Részleges hozzáférés"
+    },
+    {
+      "id": 2,
+      "lang": "EN",
+      "outlet": "NVIDIA Newsroom",
+      "date": "2026-11-08",
+      "type": "Elsődleges",
+      "title": "A Message to Our Company",
+      "url": "https://nvidianews.nvidia.com/news/a-message-to-our-company",
+      "note": "Huang saját közleménye: elismeri a hűtlenséget, bocsánatot kér, és együttműködést ígér. A partnerét nem nevezi meg. Kémkedést nem ismer el.",
+      "family": "NVIDIA"
+    },
+    {
+      "id": 3,
+      "lang": "EN",
+      "outlet": "NVIDIA igazgatóság",
+      "date": "2026-11-08",
+      "type": "Elsődleges",
+      "title": "Statement from NVIDIA Board of Directors",
+      "url": "https://investor.nvidia.com/news/press-release-details/2026/Statement-from-NVIDIA-Board-of-Directors/",
+      "note": "Független igazgatók és külső jogászok vizsgálják az ügyet. Az igazgatóság bizalmat szavaz a vezetésnek; közlése szerint jelenleg nincs oka titoksérelemre következtetni. Ez vállalati álláspont, nem lezárt vizsgálat.",
+      "family": "NVIDIA"
+    },
+    {
+      "id": 4,
+      "lang": "ZH",
+      "outlet": "Kínai külügyminisztérium",
+      "date": "2026-11-09",
+      "type": "Elsődleges",
+      "title": "2026年11月9日外交部发言人郭嘉昆主持例行记者会",
+      "url": "https://www.mfa.gov.cn/fyrbt_673021/202611/t20261109_12056081.shtml",
+      "note": "Guo Jiakun a sajtótájékoztatón visszautasítja a kínai kémkedés vádját. Ez Peking hivatalos cáfolata; önmagában nem bizonyítja vagy cáfolja a feltételezett műveletet.",
+      "family": "Kínai külügy"
+    },
+    {
+      "id": 5,
+      "lang": "EN",
+      "outlet": "Szingapúri belügyminisztérium",
+      "date": "2026-10-31",
+      "type": "Elsődleges",
+      "title": "Clarification Statement on Wall Street Journal’s Article",
+      "url": "https://www.mha.gov.sg/media-room/newsroom/clarification-statement-on-wall-street-journals-article/",
+      "note": "Cáfolja az Alice Huang hírszerzési kapcsolatait vizsgáló szingapúri eljárásról szóló értesülést. A mellékelt rendőrségi válasz ugyanakkor megerősíti a Megaspeed elleni folyamatban lévő vizsgálatot.",
+      "family": "Szingapúri kormány"
+    },
+    {
+      "id": 6,
+      "lang": "ZH",
+      "outlet": "中央社 / CNA, Tajvan",
+      "date": "2026-11-10",
+      "type": "Sajtó",
+      "title": "黃仁勳婚外情掀晶片管制漏洞…",
+      "url": "https://www.cna.com.tw/news/aopl/202611100122.aspx",
+      "note": "A szingapúri tudósítás a chipellátási lánc átláthatóságát és a vevők ellenőrzését emeli ki. A szigorítás lehetőségét szakértői véleményként, nem elfogadott új szabályként tárgyalja.",
+      "family": "CNA"
+    },
+    {
+      "id": 7,
+      "lang": "JA",
+      "outlet": "PC Watch / Impress",
+      "date": "2026-11-09",
+      "type": "Sajtó",
+      "title": "NVIDIAフアンCEOを狙うスパイ疑惑、取締役会が独立調査開始",
+      "url": "https://pc.watch.impress.co.jp/docs/news/2154808.html",
+      "note": "Japán technológiai összefoglaló, közvetlen linkekkel a két NVIDIA-közleményre. A vizsgálat elindulását erősíti meg; nem külön bizonyíték a kémkedésre.",
+      "family": "NVIDIA"
+    },
+    {
+      "id": 8,
+      "lang": "DE",
+      "outlet": "ARD / Tagesschau",
+      "date": "2026-11-09",
+      "type": "Sajtó",
+      "title": "Darum geht es beim Spionage-Verdacht bei Nvidia",
+      "url": "https://www.tagesschau.de/wirtschaft/unternehmen/faq-nvidia-spionage-100.html",
+      "note": "A vállalati ügyet az AI-beruházási ciklushoz és az exportvitához kapcsolja. AFP/Reuters anyagot is használ. A szingapúri személyes vizsgálatra vonatkozó részét az elsődleges cáfolattal együtt kell olvasni.",
+      "family": "ARD / AFP / Reuters"
+    },
+    {
+      "id": 9,
+      "lang": "FR",
+      "outlet": "Reuters / Boursorama",
+      "date": "2026-11-09",
+      "type": "Hírügynökség",
+      "title": "Nvidia chute, son patron rattrapé par une liaison avec une espionne présumée",
+      "url": "https://www.boursorama.com/bourse/actualites/nvidia-chute-son-patron-rattrape-par-une-liaison-avec-une-espionne-presumee-7dee22bdd18b3f95ecfe9d826e5eb867",
+      "note": "Francia Reuters-anyag a vezető személyéhez kötött kockázatról. Napközbeni árfolyamokat közöl, ezért azokat nem keverjük a későbbi záróár-változással.",
+      "family": "Reuters"
+    },
+    {
+      "id": 10,
+      "lang": "EN",
+      "outlet": "Reuters / MarketScreener",
+      "date": "2026-11-09",
+      "type": "Hírügynökség",
+      "title": "Nvidia, CEO Huang sued over disclosures related to suspected Chinese spy",
+      "url": "https://www.marketscreener.com/news/nvidia-ceo-huang-sued-over-disclosures-related-to-suspected-chinese-spy-ce785fd3d180f326",
+      "note": "Részvényesi keresetről számol be. A november 9-i zárás −4,3%, a piaciérték-csökkenés mintegy 190 milliárd dollár. A kereset vádakat tartalmaz, nem bírósági ténymegállapítást.",
+      "family": "Reuters"
+    },
+    {
+      "id": 11,
+      "lang": "EN",
+      "outlet": "Associated Press",
+      "date": "2026-11-09",
+      "type": "Hírügynökség",
+      "title": "What we know — and what we don’t — as Nvidia investigates an alleged spy plot",
+      "url": "https://apnews.com/article/df45d21030691f59c67bc0b35adb89a2",
+      "note": "Külön kezeli a beismerést, a sajtóban közölt amerikai hírszerzési állításokat és a még nyitott kérdéseket. A politikai következmények egyelőre lehetségesek.",
+      "family": "AP / NYT"
+    },
+    {
+      "id": 12,
+      "lang": "EN",
+      "outlet": "U.S. Bureau of Industry and Security",
+      "date": "2026-01-13",
+      "type": "Elsődleges",
+      "title": "Department of Commerce Revises License Review Policy for Semiconductors Exported to China",
+      "url": "https://www.bis.gov/press-release/department-commerce-revises-license-review-policy-semiconductors-exported-china",
+      "note": "A H200 és egyes hasonló chipek kínai exportját feltételekhez kötött, egyedi engedélyezés alá helyező közlemény. Nem általános szabad export és nem minden videókártyára kiterjedő tilalom.",
+      "family": "BIS"
+    },
+    {
+      "id": 13,
+      "lang": "EN",
+      "outlet": "NVIDIA pénzügyi jelentés",
+      "date": "2026-08-26",
+      "type": "Elsődleges",
+      "title": "Financial Results for Second Quarter Fiscal 2027",
+      "url": "https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-second-quarter-fiscal-2027",
+      "note": "96,2 milliárd dollár teljes, 89,0 milliárd adatközponti negyedéves bevétel. A Q3-előrejelzés 108 milliárd ±2%; nem számol kínai Data Center compute bevétellel. Előrejelzés, nem megvalósult Q3-eredmény.",
+      "family": "NVIDIA"
+    },
+    {
+      "id": 14,
+      "lang": "EN",
+      "outlet": "NVIDIA",
+      "date": "Termékadatlap",
+      "type": "Elsődleges",
+      "title": "GeForce RTX 5090 — hivatalos specifikáció",
+      "url": "https://www.nvidia.com/en-us/geforce/graphics-cards/50-series/rtx-5090/",
+      "note": "32 GB GDDR7 memória. A terméklap technikai adatát használjuk; az oldalon megjelent árhelyőrző miatt nem támaszkodunk rá aktuális bolti árként.",
+      "family": "NVIDIA"
+    },
+    {
+      "id": 15,
+      "lang": "EN",
+      "outlet": "NVIDIA",
+      "date": "Termékadatlap",
+      "type": "Elsődleges",
+      "title": "H200 Tensor Core GPU — adatlap",
+      "url": "https://resources.nvidia.com/en-us-gpu-resources/hpc-datasheet-sc23",
+      "note": "141 GB HBM3e memória. Az adatközponti gyorsító más termék, mint egy játékos GeForce; a memória és a rendszerkialakítás sem ugyanaz.",
+      "family": "NVIDIA"
+    },
+    {
+      "id": 16,
+      "lang": "EN",
+      "outlet": "Reuters / MarketScreener",
+      "date": "2026-10-29",
+      "type": "Hírügynökség",
+      "title": "Huang says dealings with firm in US spy probe were normal",
+      "url": "https://www.marketscreener.com/news/nvidia-s-huang-says-dealings-with-firm-in-us-spy-probe-were-normal-bloomberg-news-reports-ce785fdadd8ef325",
+      "note": "A Bloombergnek adott korábbi válasz szerint a Megaspeedhez fűződő üzleti kapcsolat szokványos volt. Ez üzleti kapcsolatokról szóló nyilatkozat; nem azonos a későbbi magánéleti beismeréssel.",
+      "family": "Reuters / Bloomberg"
+    },
+    {
+      "id": 17,
+      "lang": "EN",
+      "outlet": "Axios",
+      "date": "2026-11-09",
+      "type": "Elemzés",
+      "title": "Nvidia’s “key man risk” now in the spotlight",
+      "url": "https://www.axios.com/2026/11/09/nvidia-key-man-risk-huang",
+      "note": "A CEO-ra összpontosuló személyes kapcsolatok és stratégiai döntések kockázatát tárgyalja. Nem közöl bejelentett vezetőváltást.",
+      "family": "Axios"
+    },
+    {
+      "id": 18,
+      "lang": "JA",
+      "outlet": "TV Asahi",
+      "date": "2026-11-09",
+      "type": "Sajtó",
+      "title": "エヌビディアが独立調査を開始",
+      "url": "https://news.tv-asahi.co.jp/news_international/articles/000546282.html",
+      "note": "Japán televíziós beszámoló az amerikai sajtó és a vállalat közléseiről. Több ország tudósítása nem jelent automatikusan több független bizonyítékot.",
+      "family": "Amerikai sajtó / NVIDIA"
+    },
+    {
+      "id": 19,
+      "lang": "DE",
+      "outlet": "Deutschlandfunk",
+      "date": "2026-11-09",
+      "type": "Sajtó",
+      "title": "Nvidia startet Untersuchung zu möglicher Spionage bei Firmenchef Huang",
+      "url": "https://www.deutschlandfunk.de/nvidia-startet-untersuchung-zu-moeglicher-spionage-bei-firmenchef-huang-100.html",
+      "note": "A vizsgálatot és a kínai chipexportról folytatott korábbi politikai vitát helyezi egymás mellé. A kapcsolat oksága nem bizonyított.",
+      "family": "Vállalati közlemény / sajtó"
+    },
+    {
+      "id": 20,
+      "lang": "EN",
+      "outlet": "Reuters / The Information",
+      "date": "2026-11-10",
+      "type": "Sajtó",
+      "title": "Új, 7,5 milliárd dolláros chipszállítási állítás",
+      "url": "https://www.marketscreener.com/news/nvidia-ceo-s-alleged-affair-aided-7-5-billion-in-chip-shipments-to-china-information-reports-ce785edada8eff21",
+      "note": "A nyilvános cím a The Information értesülését idézi. A teljes szöveg belépés mögött volt; a szám és az oksági állítás nincs ebben a kutatásban önállóan ellenőrizve. Követendő nyom, nem bizonyíték.",
+      "family": "The Information → Reuters",
+      "access": "Csak cím és metaadat"
+    },
+    {
+      "id": 21,
+      "lang": "EN",
+      "outlet": "NVIDIA befektetői kapcsolatok",
+      "date": "2026-08-26",
+      "type": "Elsődleges",
+      "title": "Q2 FY2027 earnings call — átirat",
+      "url": "https://investor.nvidia.com/files/content_files/TRANSCRIPT_-NVIDIA-Corp-NVDA-US-Q2-2027-Earnings-Call-26-August-2026-5_00-PM-ET.pdf",
+      "note": "Az átirat november 17-re jelzi a következő eredménybeszámolót. Egyes másodlagos cikkek november 18-at írnak; a tervezett eseménynél az elsődleges forrást követjük.",
+      "family": "NVIDIA"
+    },
+    {
+      "id": 22,
+      "lang": "EN",
+      "outlet": "SEC / NVIDIA Form 10-Q",
+      "date": "2026-07-26-os időszak",
+      "type": "Elsődleges",
+      "title": "Negyedéves jelentés: ügyfélkoncentráció, garanciák és kapacitásvállalások",
+      "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000075/nvda-20260726.htm",
+      "note": "A jelentés a szűk ügyfélkör, a finanszírozás és a partneri kötelezettségek kockázatát tárgyalja. AI-felhős kapacitásvásárlási vállalásokat és az OpenAI-hoz kapcsolódó SB Energy-garanciákat is leír. A kötelezettség nem azonos bekövetkezett veszteséggel.",
+      "family": "NVIDIA / SEC"
+    },
+    {
+      "id": 23,
+      "lang": "EN",
+      "outlet": "IMF",
+      "date": "2026-10-13",
+      "type": "Elsődleges",
+      "title": "World Economic Outlook: Resilience Under Strain, Urgent Choices",
+      "url": "https://www.imf.org/en/publications/weo/issues/2026/10/13/world-economic-outlook-october-2026",
+      "note": "Az AI-val kapcsolatos várakozások újraértékelését makrogazdasági kockázatként kezeli. A jelentés a botrány előtt készült: háttér a sérülékenységhez, nem a Huang-ügy hatásának bizonyítéka.",
+      "family": "IMF"
+    },
+    {
+      "id": 24,
+      "lang": "EN",
+      "outlet": "Associated Press",
+      "date": "2026-02-27",
+      "type": "Hírügynökség",
+      "title": "OpenAI gets $110 billion in funding from a trio of tech powerhouses",
+      "url": "https://apnews.com/article/a0a915c32b85337d799fe2f9525a932a",
+      "note": "A februári finanszírozási bejelentésben 30 milliárd dolláros NVIDIA-vállalás szerepelt. Példa a befektetői és beszállítói szerepek összefonódására; nem bizonyíték szabálytalan pénzmozgásra.",
+      "family": "AP / OpenAI"
+    },
+    {
+      "id": 25,
+      "lang": "HU",
+      "outlet": "Telex",
+      "date": "2026-11-09",
+      "type": "Sajtó",
+      "title": "Súlyos kérdéseket vet fel a Huang-ügy",
+      "url": "https://telex.hu/kulfold/2026/11/09/jensen-huang-nvidia-kina-kem-alice-huang-egyesult-kiralysag-mesterseges-intelligencia-nemzetbiztonsag",
+      "note": "Magyar összefoglaló a személyes kapcsolat, a politikai befolyás és a vállalati bizalom összefüggéseiről. Egyes megfogalmazásai tényként kezelik a kémkedést; a dosszié ezt a nyilvánosan elérhető elsődleges bizonyítékok hiányában vizsgált állításként jelöli.",
+      "family": "Telex / amerikai sajtó"
+    },
+    {
+      "id": 26,
+      "lang": "FR",
+      "outlet": "AFP / TV5MONDE",
+      "date": "2026-11-09",
+      "type": "Hírügynökség",
+      "title": "Soupçons d’espionnage chinois du patron de Nvidia : ce que l’on sait",
+      "url": "https://information.tv5monde.com/economie/soupcons-despionnage-chinois-du-patron-de-nvidia-ce-que-lon-sait-2845233",
+      "note": "Francia kérdés–válasz háttéranyag az érintettekről, az exportpolitikai tétről és az igazgatósági vizsgálatról. A személyes hírszerzési gyanúkat amerikai lapoknak tulajdonítja; a szingapúri hatóság saját pontosításával együtt olvasandó.",
+      "family": "AFP / NYT / WSJ"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "jensen",
+      "label": "JENSEN HUANG",
+      "sub": "Alapító · vezérigazgató",
+      "x": 26,
+      "y": 18,
+      "status": "Dokumentált",
+      "text": "A személyes kapcsolat a történet kiindulópontja. A saját nyilatkozata hűtlenséget ismer el; abból nem következik, hogy tudatosan részt vett hírszerzésben.",
+      "refs": [
+        2,
+        3,
+        17
+      ],
+      "question": "Mit tudott, mikor tudta, és milyen információhoz férhetett hozzá a partnere?"
+    },
+    {
+      "id": "alice",
+      "label": "ALICE HUANG",
+      "sub": "Sajtóban megnevezett partner",
+      "x": 75,
+      "y": 18,
+      "status": "Vizsgált állítás",
+      "text": "A sajtó a Megaspeed korábbi vezetőjeként azonosítja. A kínai hírszerzési kapcsolatról amerikai értesülésekre hivatkozó tudósítások szólnak; a nyilvánosan vizsgált anyagokban nincs lezárt hatósági bizonyítás.",
+      "refs": [
+        11,
+        4,
+        5
+      ],
+      "question": "Milyen dokumentum támasztja alá a feltételezett megbízást és információátadást?"
+    },
+    {
+      "id": "nvidia",
+      "label": "NVIDIA",
+      "sub": "A technológiai csomópont",
+      "x": 27,
+      "y": 48,
+      "status": "Dokumentált",
+      "text": "Az igazgatóság vizsgálatot indított. Az üzleti kitettség főként az adatközponti AI-piac felől érthető meg: ez a jelentett negyedéves bevétel közel 93%-a.",
+      "refs": [
+        3,
+        13
+      ],
+      "question": "Feltár-e a vizsgálat vállalati ellenőrzési hiányosságot vagy titoksérelmet?"
+    },
+    {
+      "id": "mega",
+      "label": "MEGASPEED",
+      "sub": "Szingapúri adatközponti cég",
+      "x": 74,
+      "y": 48,
+      "status": "Dokumentált vizsgálat",
+      "text": "A szingapúri hatóság megerősítette a cég ügyében folyó vizsgálatot. Az exportkorlátozások megkerüléséről szóló sajtóállítás nem azonos jogerősen megállapított jogsértéssel.",
+      "refs": [
+        5,
+        6,
+        16
+      ],
+      "question": "Ki volt a tényleges végfelhasználó, és hol működtek a megvásárolt chipek?"
+    },
+    {
+      "id": "usa",
+      "label": "WASHINGTON",
+      "sub": "Engedélyek · nemzetbiztonság",
+      "x": 18,
+      "y": 80,
+      "status": "Szabályozási háttér",
+      "text": "Az exportengedélyezés kereteit az amerikai kormány szabja meg. A botrány növelheti a szigorítás politikai nyomását; ez még nem egyenlő új tilalommal.",
+      "refs": [
+        12,
+        11
+      ],
+      "question": "Változik-e az engedélyezés, a végfelhasználók ellenőrzése vagy a felhőhozzáférés szabálya?"
+    },
+    {
+      "id": "china",
+      "label": "KÍNA",
+      "sub": "Piac · geopolitikai szereplő",
+      "x": 82,
+      "y": 80,
+      "status": "Vitatott állítás",
+      "text": "Peking cáfolta a kémkedési állítást. Az AI-számítási kapacitáshoz való hozzáférés külön gazdasági és stratégiai kérdés, amely már a botrány előtt is vitatott volt.",
+      "refs": [
+        4,
+        12
+      ],
+      "question": "Érkezik-e export- vagy importkorlátozás, illetve ellenlépés?"
+    },
+    {
+      "id": "geforce",
+      "label": "GEFORCE",
+      "sub": "A te videókártyád",
+      "x": 49,
+      "y": 82,
+      "status": "Lehetséges hatás",
+      "text": "A fogyasztói GPU-kat közvetett csatornák érhetik: gyártási prioritások, memória, régiós kereskedelem, kereslet és árfolyam. Nincs igazolt automatikus ár- vagy teljesítményhatás.",
+      "refs": [
+        14,
+        15
+      ],
+      "question": "Lesz-e tényleges termék-, készlet- vagy árközlés a fogyasztói piacon?"
+    }
+  ],
+  "edges": [
+    [
+      "jensen",
+      "alice",
+      "claim",
+      "Sajtóban azonosított kapcsolat"
+    ],
+    [
+      "jensen",
+      "nvidia",
+      "fact",
+      "Vezérigazgató"
+    ],
+    [
+      "alice",
+      "mega",
+      "claim",
+      "Sajtóban közölt vezetői szerep"
+    ],
+    [
+      "nvidia",
+      "mega",
+      "fact",
+      "Üzleti kapcsolat"
+    ],
+    [
+      "mega",
+      "china",
+      "claim",
+      "Feltételezett exportút"
+    ],
+    [
+      "usa",
+      "china",
+      "fact",
+      "Exportkorlátozások"
+    ],
+    [
+      "usa",
+      "nvidia",
+      "fact",
+      "Engedélyezés"
+    ],
+    [
+      "nvidia",
+      "geforce",
+      "fact",
+      "Termékcsalád"
+    ],
+    [
+      "china",
+      "geforce",
+      "effect",
+      "Közvetett piaci hatás"
+    ]
+  ],
+  "timeline": [
+    {
+      "date": "2026. JAN. 13.",
+      "tag": "Szabályozás",
+      "title": "A chipkereskedelem már korábban politikai ügy volt.",
+      "body": "A BIS bejelenti a H200 és hasonló chipek feltételes, egyedi exportengedélyezését Kína felé. A botrány tehát egy már szabályozott piacra érkezik.",
+      "refs": [
+        12
+      ]
+    },
+    {
+      "date": "2026. AUG. 26.",
+      "tag": "Üzlet",
+      "title": "Az NVIDIA súlypontja az adatközpont.",
+      "body": "A Q2 FY2027 jelentés megmutatja az AI-infrastruktúra méretét. A vállalati pénzügyi év nem azonos a naptári évvel: ez a negyedév 2026. július 26-án zárult.",
+      "refs": [
+        13
+      ]
+    },
+    {
+      "date": "2026. OKT. 29.",
+      "tag": "Sajtóértesülés",
+      "title": "Nyilvánossá válik a hírszerzési gyanú.",
+      "body": "A Reuters a NYT állításairól és Huang Bloombergnek adott reakciójáról tudósít. Huang a Megaspeed üzleti kapcsolatát szokványosnak nevezi.",
+      "refs": [
+        16
+      ]
+    },
+    {
+      "date": "2026. OKT. 31.",
+      "tag": "Hivatalos pontosítás",
+      "title": "Két vizsgálatot nem szabad összemosni.",
+      "body": "Szingapúr az Alice Huangot érintő saját hírszerzési vizsgálat állítását cáfolja; a Megaspeed elleni eljárást megerősíti.",
+      "refs": [
+        5
+      ]
+    },
+    {
+      "date": "2026. NOV. 08.",
+      "tag": "Elsődleges közlés",
+      "title": "Beismerés és független vállalati vizsgálat.",
+      "body": "Huang nyilvánosan bocsánatot kér. Az igazgatóság külön bizottságot és külső jogi közreműködést jelent be.",
+      "refs": [
+        2,
+        3
+      ]
+    },
+    {
+      "date": "2026. NOV. 09.",
+      "tag": "Piaci reakció",
+      "title": "Árfolyamesés, kereset és kínai cáfolat.",
+      "body": "A Reuters szerint az amerikai záráskor 4,3%-ot esik az árfolyam, és részvényesi keresetet nyújtanak be. Peking visszautasítja a kémkedés vádját. A három fejlemény három eltérő típusú információ.",
+      "refs": [
+        10,
+        4
+      ]
+    },
+    {
+      "date": "2026. NOV. 10.",
+      "tag": "Nyitott nyom",
+      "title": "Újabb állítások, hiányos hozzáférés.",
+      "body": "A Reuters/The Information nyilvános címe 7,5 milliárd dollárnyi chipszállítást említ. Teljes hozzáférés és önálló ellenőrzés híján ezt nem emeljük bizonyított ténnyé.",
+      "refs": [
+        20
+      ]
+    },
+    {
+      "date": "KÖVETKEZŐ ELLENŐRZÉSI PONT",
+      "tag": "Tervezett",
+      "title": "Vizsgálati eredmény és negyedéves beszámoló.",
+      "body": "Az augusztusi hivatalos átirat november 17-re tervezte a következő eredménybeszámolót. A vizsgálat lezárásának időpontja a feldolgozott anyagokból nem állapítható meg.",
+      "refs": [
+        21,
+        3
+      ]
+    }
+  ],
+  "scenarios": [
+    {
+      "id": "contained",
+      "num": "A",
+      "name": "Korlátozott válság",
+      "short": "A vizsgálat nem tár fel súlyos vállalati sérelmet.",
+      "trigger": "Nincs igazolt titokátadás vagy exportjogsértés; a vezetői bizalom részben helyreáll.",
+      "company": "A vállalatirányítás szigorodhat, miközben a megrendelések és a termékfejlesztés folytatódnak. A személyes reputáció sérülése tartósabb lehet, mint az üzleti hatás.",
+      "gpu": "Nem következik belőle automatikus GeForce-árcsökkentés. A bolti árakat továbbra is a kínálat, a verseny és a kereslet alakítja.",
+      "world": "A kezdeti tőzsdei bizonytalanság csillapodhat. Ez nem szünteti meg az AI-beruházások megtérülésével kapcsolatos külön kockázatokat.",
+      "watch": "Igazgatósági lezárás, stabil megrendelések, változatlan termékütemezés."
+    },
+    {
+      "id": "controls",
+      "num": "B",
+      "name": "Szigorúbb chiphatárok",
+      "short": "Új korlátozások vagy erősebb végfelhasználói ellenőrzés jön.",
+      "trigger": "A politikai reakció engedélyezési szigorítássá válik, akár a személyes ügy végső minősítésétől függetlenül.",
+      "company": "Szűkebb elérhető piac, több ellenőrzés és régiós termékváltozat válhat szükségessé. A kínai szereplők alternatív beszállítókat kereshetnek.",
+      "gpu": "Korlátozott régiókban drágulás vagy átterelődő kínálat is lehetséges. Az európai GeForce-árak iránya nem vezethető le egyetlen exporttilalomból.",
+      "world": "Az AI-infrastruktúra földrajzilag széttagolódhat; nőhet az adatközpontok és a kereskedelmi partnerek megfelelési költsége.",
+      "watch": "BIS-közlöny, engedélyfeltételek, kínai importszabályok, partneri ellenőrzések."
+    },
+    {
+      "id": "leadership",
+      "num": "C",
+      "name": "Vezetési törés",
+      "short": "Súlyos megállapítás vagy tartós bizalomvesztés következik.",
+      "trigger": "A vizsgálat jelentős mulasztást tár fel, vagy az igazgatóság megváltoztatja a vezetésről alkotott álláspontját.",
+      "company": "Vezetőváltás és átmeneti döntési bizonytalanság lehet. A mérnökcsapatok, a CUDA és a szerződések ettől nem tűnnek el, de a partnerkapcsolatok újraszervezése időt kérhet.",
+      "gpu": "Termékstratégiai változás vagy késés csak külön bejelentés alapján állítható. Egy vezető távozása önmagában nem állítja le a meghajtókat és a meglévő kártyákat.",
+      "world": "Nagyobb részvénypiaci kilengések és az AI-szektor újraárazása lehetséges. Tartós reálgazdasági hatáshoz a beruházások és a finanszírozás visszaesése is kell.",
+      "watch": "Igazgatósági döntés, utódlási terv, fontos ügyfelek és vezetők reakciója."
+    },
+    {
+      "id": "system",
+      "num": "D",
+      "name": "Összeadódó sokkok",
+      "short": "A botrány egy már lassuló AI-ciklust erősít fel.",
+      "trigger": "A bizalmi válság mellé gyenge megtérülés, beruházási visszavágás és finanszírozási nehézség társul.",
+      "company": "A megrendelések csökkenése és az elvárt növekedés átárazása súlyosabb lenne, mint önmagában a magánéleti ügy.",
+      "gpu": "Gyengébb kereslet árnyomást hozhat, de a gyártó visszafoghatja a kínálatot is. A használt szervergyorsítók nem válnak automatikusan olcsó játékos kártyává.",
+      "world": "Beszállítók, adatközpontok, energia- és hitelprojektek is érintettek lehetnek. Ez feltételes kockázati lánc, nem megállapított világgazdasági összeomlás.",
+      "watch": "Nagy felhőcégek beruházási tervei, GPU-bérleti díjak, kihasználtság, hitelfeltételek."
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+import {writeFileSync} from 'node:fs';
+import {sources,nodes,edges,timeline,scenarios} from '../src/data.js';
+const research={title:'A Huang-akta',asOf:'2026-11-10',language:'hu',sourceLanguages:['hu','en','zh','ja','de','fr'],method:'Dátumhoz kötött, forráshoz rendelt kutatás. Tény, sajtóállítás és saját feltételes elemzés elkülönítve. A 444-tétel csak nyilvános bevezető; a 20. tétel csak cím és metaadat.',sources,nodes,edges,timeline,scenarios};
+writeFileSync('public/kutatasi-jegyzek.json',JSON.stringify(research,null,2));
+let md='# A Huang-akta — kutatási jegyzék\n\nÁllapot: 2026. november 10.\n\n'+research.method+'\n\n';
+md+='## Ellenőrzött források\n\n'+sources.map(s=>`### ${s.id}. ${s.outlet} · ${s.lang}\n\n[${s.title}](${s.url})\n\n${s.date} · ${s.type} · Információs ág: ${s.family}\n\n${s.note}\n`).join('\n');
+md+='\n## Idővonal\n\n'+timeline.map(t=>`### ${t.date} — ${t.title}\n\n${t.body}\n\nForrások: ${t.refs.join(', ')}.\n`).join('\n');
+md+='\n## Saját, feltételes forgatókönyvek\n\n'+scenarios.map(s=>`### ${s.num}. ${s.name}\n\nFeltétel: ${s.trigger}\n\nNVIDIA: ${s.company}\n\nVideókártyák: ${s.gpu}\n\nVilággazdaság: ${s.world}\n\nEllenőrzési pont: ${s.watch}\n`).join('\n');
+writeFileSync('KUTATAS.md',md);
+console.log(`Exported ${sources.length} sources, ${new Set(sources.map(s=>s.lang)).size} languages.`);
