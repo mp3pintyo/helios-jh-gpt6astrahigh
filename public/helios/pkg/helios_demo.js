@@ -1,3 +1,61 @@
+import { bakePoolCreate } from './snippets/helios-demo-5d200bae53c04dab/src/bake_worker.js';
+import { gpuMemoryEntries, installGpuMemoryHook } from './snippets/helios-demo-5d200bae53c04dab/src/gpu_memory.js';
+import * as import1 from "./snippets/helios-demo-5d200bae53c04dab/src/bake_worker.js"
+
+
+/**
+ * A bake worker's entry (`bake_worker.js`): runs one task, a share of the scene bake or one of
+ * Lumen's displaced variants.
+ * @param {Uint8Array | number[]} input
+ * @returns {Uint8Array}
+ */
+export function heliosBakeTask(input) {
+    const ptr0 = passArray8ToWasm0(input, wasm.__wbindgen_malloc);
+    const len0 = WASM_VECTOR_LEN;
+    const ret = wasm.heliosBakeTask(ptr0, len0);
+    var v2 = getArrayU8FromWasm0(ret[0], ret[1]).slice();
+    wasm.__wbindgen_free(ret[0], ret[1] * 1, 1);
+    return v2;
+}
+
+/**
+ * What the engine is waiting for, e.g. "Compiling GPU shaders… 4 s (31 / 52)" while the browser
+ * compiles the pipelines of the first image (or "Compiling GPU shaders… 2 s" for a new scene's
+ * or a feature's that a frame needs at once; the canvas keeps its last frame meanwhile); empty
+ * while it renders. A page can show it over the canvas until [`helios_frames`] counts a frame.
+ * @returns {string}
+ */
+export function heliosBusy() {
+    let deferred1_0;
+    let deferred1_1;
+    try {
+        const ret = wasm.heliosBusy();
+        deferred1_0 = ret[0];
+        deferred1_1 = ret[1];
+        return getStringFromWasm0(ret[0], ret[1]);
+    } finally {
+        wasm.__wbindgen_free(deferred1_0, deferred1_1, 1);
+    }
+}
+
+/**
+ * One actor for the Details panel and the gizmo (see `editor::describe::actor`).
+ * @param {number} id
+ * @returns {string}
+ */
+export function heliosEditorActor(id) {
+    let deferred1_0;
+    let deferred1_1;
+    try {
+        const ret = wasm.heliosEditorActor(id);
+        deferred1_0 = ret[0];
+        deferred1_1 = ret[1];
+        return getStringFromWasm0(ret[0], ret[1]);
+    } finally {
+        wasm.__wbindgen_free(deferred1_0, deferred1_1, 1);
+    }
+}
+
 /**
  * Applies an edit operation (JSON, see `editor::ops::EditOp`) as one undo step; an op with a
  * `"merge"` key joins the previous step if that had the same key (sliders, light drags).
@@ -28,6 +86,18 @@ export function heliosEditorApply(op) {
 export function heliosEditorCamera() {
     const ret = wasm.heliosEditorCamera();
     var v1 = getArrayF32FromWasm0(ret[0], ret[1]).slice();
+    wasm.__wbindgen_free(ret[0], ret[1] * 4, 4);
+    return v1;
+}
+
+/**
+ * Removes the free instance and light slots of deleted things now (otherwise done once the
+ * editor has been idle for a while); returns [instances, lights] removed.
+ * @returns {Uint32Array}
+ */
+export function heliosEditorCompact() {
+    const ret = wasm.heliosEditorCompact();
+    var v1 = getArrayU32FromWasm0(ret[0], ret[1]).slice();
     wasm.__wbindgen_free(ret[0], ret[1] * 4, 4);
     return v1;
 }
@@ -112,6 +182,16 @@ export function heliosEditorLoad(json) {
 }
 
 /**
+ * Measurements: `false` makes drags move instances as they are (static: the shadow pages under
+ * them re-render in full every frame), the behaviour before actors; `true` (default) makes them
+ * movable while dragged.
+ * @param {boolean} on
+ */
+export function heliosEditorMovableDrags(on) {
+    wasm.heliosEditorMovableDrags(on);
+}
+
+/**
  * Asks what lies under canvas point (x, y) in CSS pixels; returns the pick's id. The answer
  * arrives a frame or two later from [`helios_editor_pick_result`].
  * @param {number} x
@@ -142,8 +222,8 @@ export function heliosEditorPickResult() {
 }
 
 /**
- * Moves instances during a gizmo drag without an undo step: 10 numbers per instance
- * (translation, rotation quaternion, scale).
+ * Moves instances' components during a gizmo drag without an undo step: 10 numbers per
+ * instance (translation, rotation quaternion, scale).
  * @param {Uint32Array | number[]} instances
  * @param {Float32Array | number[]} values
  */
@@ -163,6 +243,38 @@ export function heliosEditorPreview(instances, values) {
 }
 
 /**
+ * Moves actors (with their children and components) during a gizmo drag without an undo
+ * step: 10 numbers of world transform per actor. Their instances move as movable ones until
+ * the drag settles.
+ * @param {Uint32Array | number[]} actors
+ * @param {Float32Array | number[]} values
+ */
+export function heliosEditorPreviewActors(actors, values) {
+    let ptr0, len0, ptr1, len1;
+    try {
+        ptr0 = passArray32ToWasm0(actors, wasm.__wbindgen_malloc);
+        len0 = WASM_VECTOR_LEN;
+        ptr1 = passArrayF32ToWasm0(values, wasm.__wbindgen_malloc);
+        len1 = WASM_VECTOR_LEN;
+    } catch (e) {
+        if (ptr1) { wasm.__wbindgen_free(ptr1, len1 * 4, 4); }
+        if (ptr0) { wasm.__wbindgen_free(ptr0, len0 * 4, 4); }
+        throw e;
+    }
+    wasm.heliosEditorPreviewActors(ptr0, len0, ptr1, len1);
+}
+
+/**
+ * Moves components during a drag: JSON `[{actor, component, t, r, s}]` (world transforms).
+ * @param {string} json
+ */
+export function heliosEditorPreviewComponents(json) {
+    const ptr0 = passStringToWasm0(json, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+    const len0 = WASM_VECTOR_LEN;
+    wasm.heliosEditorPreviewComponents(ptr0, len0);
+}
+
+/**
  * @returns {boolean}
  */
 export function heliosEditorRedo() {
@@ -171,11 +283,11 @@ export function heliosEditorRedo() {
 }
 
 /**
- * Puts previewed instances back where the document has them (a cancelled drag).
- * @param {Uint32Array | number[]} instances
+ * Puts previewed actors and components back where the document has them (a cancelled drag).
+ * @param {Uint32Array | number[]} _instances
  */
-export function heliosEditorRevertPreview(instances) {
-    const ptr0 = passArray32ToWasm0(instances, wasm.__wbindgen_malloc);
+export function heliosEditorRevertPreview(_instances) {
+    const ptr0 = passArray32ToWasm0(_instances, wasm.__wbindgen_malloc);
     const len0 = WASM_VECTOR_LEN;
     wasm.heliosEditorRevertPreview(ptr0, len0);
 }
@@ -207,7 +319,18 @@ export function heliosEditorSave() {
 }
 
 /**
- * Instances outlined in the viewport.
+ * The selection: JSON `{actors: [id…], components: [[actor, name]…]}`; the viewport outlines
+ * their instances (an actor's children too).
+ * @param {string} json
+ */
+export function heliosEditorSelect(json) {
+    const ptr0 = passStringToWasm0(json, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+    const len0 = WASM_VECTOR_LEN;
+    wasm.heliosEditorSelect(ptr0, len0);
+}
+
+/**
+ * Instances outlined in the viewport (their components; see [`helios_editor_select`]).
  * @param {Uint32Array | number[]} instances
  */
 export function heliosEditorSetSelection(instances) {
@@ -239,6 +362,75 @@ export function heliosEditorState() {
 export function heliosEditorUndo() {
     const ret = wasm.heliosEditorUndo();
     return ret !== 0;
+}
+
+/**
+ * Why the engine stopped, or empty while it starts or runs: the start-up error (no WebGPU, a
+ * scene file or model that failed to load, …) or the lost GPU device. The status element shows
+ * the same text, but also progress; a page polling for readiness checks this to stop waiting.
+ * @returns {string}
+ */
+export function heliosError() {
+    let deferred1_0;
+    let deferred1_1;
+    try {
+        const ret = wasm.heliosError();
+        deferred1_0 = ret[0];
+        deferred1_1 = ret[1];
+        return getStringFromWasm0(ret[0], ret[1]);
+    } finally {
+        wasm.__wbindgen_free(deferred1_0, deferred1_1, 1);
+    }
+}
+
+/**
+ * Frames presented so far (0 until the first image is on the canvas).
+ * @returns {number}
+ */
+export function heliosFrames() {
+    const ret = wasm.heliosFrames();
+    return ret >>> 0;
+}
+
+/**
+ * The GPU memory the page holds, by subsystem, as JSON: `{"total": bytes, "peak": bytes,
+ * "failures": 0, "categories": {"shadows: virtual shadow maps": bytes, …}, "labels": [[label,
+ * category, bytes, count], …]}` — every live `GPUBuffer` / `GPUTexture` (destroyed or collected
+ * ones leave the ledger). `table`: the same as the text table the native `--gpu-memory` logs.
+ * @param {boolean} table
+ * @returns {string}
+ */
+export function heliosGpuMemory(table) {
+    let deferred1_0;
+    let deferred1_1;
+    try {
+        const ret = wasm.heliosGpuMemory(table);
+        deferred1_0 = ret[0];
+        deferred1_1 = ret[1];
+        return getStringFromWasm0(ret[0], ret[1]);
+    } finally {
+        wasm.__wbindgen_free(deferred1_0, deferred1_1, 1);
+    }
+}
+
+/**
+ * Per-pass GPU times (timestamp queries) as JSON, `{"frames": 120, "frame": 8.1, "passes":
+ * {"tsr": 0.11, …}}`: each pass's minimum since the last reset (`reset`: start a new window).
+ * Empty without timestamp queries or before the engine runs.
+ * @param {boolean} reset
+ * @returns {string}
+ */
+export function heliosGpuPasses(reset) {
+    let deferred1_0;
+    let deferred1_1;
+    try {
+        const ret = wasm.heliosGpuPasses(reset);
+        deferred1_0 = ret[0];
+        deferred1_1 = ret[1];
+        return getStringFromWasm0(ret[0], ret[1]);
+    } finally {
+        wasm.__wbindgen_free(deferred1_0, deferred1_1, 1);
+    }
 }
 
 /**
@@ -283,17 +475,19 @@ export function heliosLoadModel(url) {
 }
 
 /**
- * Rebuilds the engine with another scene (`valley`, `cathedral` or `forest`); blocks for the
- * few seconds the bake takes, so show a notice and yield a frame before calling. Returns
- * whether the scene name was known and the engine running.
+ * Rebuilds the engine with another scene (`valley`, `cathedral`, `forest` or `gallery`). The
+ * meshes bake in the bake workers while the current scene keeps running (without workers the
+ * bake blocks the page for a few seconds, so show a notice and yield a frame before calling).
+ * Resolves once the new scene is in, to whether the scene name was known and the engine
+ * running.
  * @param {string} name
- * @returns {boolean}
+ * @returns {Promise<boolean>}
  */
 export function heliosLoadScene(name) {
     const ptr0 = passStringToWasm0(name, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
     const len0 = WASM_VECTOR_LEN;
     const ret = wasm.heliosLoadScene(ptr0, len0);
-    return ret !== 0;
+    return ret;
 }
 
 /**
@@ -329,6 +523,47 @@ export function heliosMaterialNodes() {
 }
 
 /**
+ * Takes a photo: `samples` frames accumulated into one still from the current camera, each with
+ * a new sub-pixel jitter and, with depth of field on (`KeyB`), a lens sample focused like the
+ * real-time depth of field (film-quality bokeh instead of the post-process blur). The scene's
+ * clock stands still meanwhile; the finished still stays on the canvas until the camera moves
+ * or `heliosPhoto(0)` returns to the real-time image. Poll [`helios_photo_progress`].
+ * @param {number} samples
+ */
+export function heliosPhoto(samples) {
+    wasm.heliosPhoto(samples);
+}
+
+/**
+ * The photo's progress as JSON, `{"accumulated": 37, "samples": 128, "focusing": false,
+ * "done": false}`, or an empty string without a photo.
+ * @returns {string}
+ */
+export function heliosPhotoProgress() {
+    let deferred1_0;
+    let deferred1_1;
+    try {
+        const ret = wasm.heliosPhotoProgress();
+        deferred1_0 = ret[0];
+        deferred1_1 = ret[1];
+        return getStringFromWasm0(ret[0], ret[1]);
+    } finally {
+        wasm.__wbindgen_free(deferred1_0, deferred1_1, 1);
+    }
+}
+
+/**
+ * Whether the start-up finished: the scene is built and a `sceneFile`'s edits are applied, so
+ * the camera, editor and scene calls act on the final scene (the first image may still be
+ * compiling: see [`helios_frames`]).
+ * @returns {boolean}
+ */
+export function heliosReady() {
+    const ret = wasm.heliosReady();
+    return ret !== 0;
+}
+
+/**
  * The current scene's name; empty until the engine runs.
  * @returns {string}
  */
@@ -343,6 +578,15 @@ export function heliosScene() {
     } finally {
         wasm.__wbindgen_free(deferred1_0, deferred1_1, 1);
     }
+}
+
+/**
+ * Scales the forest campfire's soot from its next build (`heliosLoadScene`; 1 by default, as
+ * the native `--campfire-smoke`): a smokier fire whose volume shadow shows plainly.
+ * @param {number} scale
+ */
+export function heliosSetCampfireSmoke(scale) {
+    wasm.heliosSetCampfireSmoke(scale);
 }
 
 /**
@@ -362,6 +606,15 @@ export function heliosSetCandleLights(count) {
  */
 export function heliosSetEditorMode(on) {
     wasm.heliosSetEditorMode(on);
+}
+
+/**
+ * Sets whether a lantern is carried down the cathedral's nave from its next build
+ * (`heliosLoadScene`; `?lantern=1` at start): a fast, sharp moving light.
+ * @param {boolean} on
+ */
+export function heliosSetLantern(on) {
+    wasm.heliosSetLantern(on);
 }
 
 /**
@@ -387,6 +640,25 @@ export function heliosSetSun(azimuth_deg, elevation_deg) {
  */
 export function heliosSetView(index) {
     wasm.heliosSetView(index);
+}
+
+/**
+ * The background shader compile as JSON: `{"compiled": 84, "total": 160, "waiting": ["shadows",
+ * …], "compiler": "Serial", "firstImageMs": …, "fullQualityMs": …}` (times from the start of the
+ * compile, 0 until reached). The features in `waiting` are off until their pipelines arrive.
+ * @returns {string}
+ */
+export function heliosShaders() {
+    let deferred1_0;
+    let deferred1_1;
+    try {
+        const ret = wasm.heliosShaders();
+        deferred1_0 = ret[0];
+        deferred1_1 = ret[1];
+        return getStringFromWasm0(ret[0], ret[1]);
+    } finally {
+        wasm.__wbindgen_free(deferred1_0, deferred1_1, 1);
+    }
 }
 
 export function start() {
@@ -435,6 +707,10 @@ function __wbg_get_imports() {
             const ret = arg0 === undefined;
             return ret;
         },
+        __wbg___wbindgen_module_2e98e71e8e96b4ac: function() {
+            const ret = wasmModule;
+            return ret;
+        },
         __wbg___wbindgen_number_get_934b640d0889af78: function(arg0, arg1) {
             const obj = arg1;
             const ret = typeof(obj) === 'number' ? obj : undefined;
@@ -458,10 +734,18 @@ function __wbg_get_imports() {
         __wbg_addEventListener_847fd86b8c33ec43: function() { return handleError(function (arg0, arg1, arg2, arg3) {
             arg0.addEventListener(getStringFromWasm0(arg1, arg2), arg3);
         }, arguments); },
+        __wbg_all_79a70a4b6aca6f9e: function(arg0) {
+            const ret = Promise.all(arg0);
+            return ret;
+        },
         __wbg_arrayBuffer_2c99a9ba14ba536c: function() { return handleError(function (arg0) {
             const ret = arg0.arrayBuffer();
             return ret;
         }, arguments); },
+        __wbg_bakePoolCreate_9a6d907f62b0899f: function(arg0, arg1) {
+            const ret = bakePoolCreate(arg0, arg1 >>> 0);
+            return isLikeNone(ret) ? 0 : addToExternrefTable0(ret);
+        },
         __wbg_beginComputePass_b9a325184985e6ff: function(arg0, arg1) {
             const ret = arg0.beginComputePass(arg1);
             return ret;
@@ -478,6 +762,9 @@ function __wbg_get_imports() {
             const ret = arg0.call(arg1, arg2);
             return ret;
         }, arguments); },
+        __wbg_cancel_ce0a81b67c4f66a2: function(arg0, arg1) {
+            arg0.cancel(arg1 >>> 0);
+        },
         __wbg_clearBuffer_3d5a3057c3c8a9bf: function(arg0, arg1, arg2, arg3) {
             arg0.clearBuffer(arg1, arg2, arg3);
         },
@@ -580,6 +867,12 @@ function __wbg_get_imports() {
             getDataViewMemory0().setInt32((arg0 >>> 0) + 4 * 1, len1, true);
             getDataViewMemory0().setInt32((arg0 >>> 0) + 4 * 0, ptr1, true);
         },
+        __wbg_destroy_249478e98a7943d5: function(arg0) {
+            arg0.destroy();
+        },
+        __wbg_destroy_637537007d9eaa44: function(arg0) {
+            arg0.destroy();
+        },
         __wbg_devicePixelRatio_90ee4024cee5d5f4: function(arg0) {
             const ret = arg0.devicePixelRatio;
             return ret;
@@ -647,6 +940,10 @@ function __wbg_get_imports() {
             const ret = arg0.finish(arg1);
             return ret;
         },
+        __wbg_from_eac91875c8a5ffa4: function(arg0) {
+            const ret = Array.from(arg0);
+            return ret;
+        },
         __wbg_getContext_1938edb9a972f63d: function() { return handleError(function (arg0, arg1, arg2) {
             const ret = arg0.getContext(getStringFromWasm0(arg1, arg2));
             return isLikeNone(ret) ? 0 : addToExternrefTable0(ret);
@@ -679,8 +976,27 @@ function __wbg_get_imports() {
             const ret = Reflect.get(arg0, arg1);
             return ret;
         }, arguments); },
+        __wbg_get_d7176cfb76d71114: function(arg0, arg1) {
+            const ret = arg0[arg1 >>> 0];
+            return ret;
+        },
+        __wbg_get_unchecked_e6325ad374eff861: function(arg0, arg1) {
+            const ret = arg0[arg1 >>> 0];
+            return ret;
+        },
+        __wbg_gpuMemoryEntries_16bb6c87883d681f: function(arg0) {
+            const ret = gpuMemoryEntries();
+            const ptr1 = passStringToWasm0(ret, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+            const len1 = WASM_VECTOR_LEN;
+            getDataViewMemory0().setInt32((arg0 >>> 0) + 4 * 1, len1, true);
+            getDataViewMemory0().setInt32((arg0 >>> 0) + 4 * 0, ptr1, true);
+        },
         __wbg_gpu_514705c6dd1f0dab: function(arg0) {
             const ret = arg0.gpu;
+            return ret;
+        },
+        __wbg_hardwareConcurrency_8f990c8e7f6c632f: function(arg0) {
+            const ret = arg0.hardwareConcurrency;
             return ret;
         },
         __wbg_has_eafa12e457ea88fb: function(arg0, arg1, arg2) {
@@ -707,6 +1023,9 @@ function __wbg_get_imports() {
         },
         __wbg_info_ef9e889444913d2f: function(arg0) {
             console.info(arg0);
+        },
+        __wbg_installGpuMemoryHook_2429ff547c6a8d59: function(arg0) {
+            installGpuMemoryHook(arg0 !== 0);
         },
         __wbg_instanceof_HtmlCanvasElement_89f280683e987b9e: function(arg0) {
             let result;
@@ -738,6 +1057,16 @@ function __wbg_get_imports() {
             const ret = result;
             return ret;
         },
+        __wbg_instanceof_Uint8Array_d7aeb0dcb3108fea: function(arg0) {
+            let result;
+            try {
+                result = arg0 instanceof Uint8Array;
+            } catch (_) {
+                result = false;
+            }
+            const ret = result;
+            return ret;
+        },
         __wbg_instanceof_Window_5cf453f5639aa1a2: function(arg0) {
             let result;
             try {
@@ -763,6 +1092,10 @@ function __wbg_get_imports() {
             const ret = arg0.length;
             return ret;
         },
+        __wbg_length_b03a0fabb109b1e9: function(arg0) {
+            const ret = arg0.length;
+            return ret;
+        },
         __wbg_limits_4e444eb8c2e61c45: function(arg0) {
             const ret = arg0.limits;
             return ret;
@@ -777,6 +1110,10 @@ function __wbg_get_imports() {
         },
         __wbg_log_ff86bbb34c295e21: function(arg0) {
             console.log(arg0);
+        },
+        __wbg_lost_25273dba897db03c: function(arg0) {
+            const ret = arg0.lost;
+            return ret;
         },
         __wbg_mapAsync_b0597127f5037286: function(arg0, arg1, arg2, arg3) {
             const ret = arg0.mapAsync(arg1 >>> 0, arg2, arg3);
@@ -898,6 +1235,13 @@ function __wbg_get_imports() {
             const ret = arg0.maxVertexBuffers;
             return ret;
         },
+        __wbg_message_5223ba7df7256eac: function(arg0, arg1) {
+            const ret = arg1.message;
+            const ptr1 = passStringToWasm0(ret, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+            const len1 = WASM_VECTOR_LEN;
+            getDataViewMemory0().setInt32((arg0 >>> 0) + 4 * 1, len1, true);
+            getDataViewMemory0().setInt32((arg0 >>> 0) + 4 * 0, ptr1, true);
+        },
         __wbg_minStorageBufferOffsetAlignment_529f1f52e61188fc: function(arg0) {
             const ret = arg0.minStorageBufferOffsetAlignment;
             return ret;
@@ -934,6 +1278,10 @@ function __wbg_get_imports() {
             const ret = new OffscreenCanvas(arg0 >>> 0, arg1 >>> 0);
             return ret;
         }, arguments); },
+        __wbg_new_37eb45aaf5eeb820: function() {
+            const ret = new Array();
+            return ret;
+        },
         __wbg_new_ba40181b3f24ac80: function(arg0, arg1) {
             try {
                 var state0 = {a: arg0, b: arg1};
@@ -1010,6 +1358,10 @@ function __wbg_get_imports() {
             const ret = arg0.onSubmittedWorkDone();
             return ret;
         },
+        __wbg_parse_c3f72b5a24f83c01: function() { return handleError(function (arg0, arg1) {
+            const ret = JSON.parse(getStringFromWasm0(arg0, arg1));
+            return ret;
+        }, arguments); },
         __wbg_performance_50e6a3f8dc80bbca: function(arg0) {
             const ret = arg0.performance;
             return isLikeNone(ret) ? 0 : addToExternrefTable0(ret);
@@ -1022,11 +1374,19 @@ function __wbg_get_imports() {
             const ret = arg0.pointerId;
             return ret;
         },
+        __wbg_poll_48e857456f1752fe: function(arg0, arg1) {
+            const ret = arg0.poll(arg1 >>> 0);
+            return ret;
+        },
         __wbg_preventDefault_cfb06b02e7406899: function(arg0) {
             arg0.preventDefault();
         },
         __wbg_prototypesetcall_13162965d1fe7aa3: function(arg0, arg1, arg2) {
             Uint8Array.prototype.set.call(getArrayU8FromWasm0(arg0, arg1), arg2);
+        },
+        __wbg_push_c9f4893fc209f768: function(arg0, arg1) {
+            const ret = arg0.push(arg1);
+            return ret;
         },
         __wbg_querySelectorAll_6c1bd81d448fb480: function() { return handleError(function (arg0, arg1, arg2) {
             const ret = arg0.querySelectorAll(getStringFromWasm0(arg1, arg2));
@@ -1042,6 +1402,10 @@ function __wbg_get_imports() {
         __wbg_queue_e250e2ebc49b39e0: function(arg0) {
             const ret = arg0.queue;
             return ret;
+        },
+        __wbg_reason_53e762e714b67b72: function(arg0) {
+            const ret = arg0.reason;
+            return (__wbindgen_enum_GpuDeviceLostReason.indexOf(ret) + 1 || 3) - 1;
         },
         __wbg_repeat_f86675ce521ba584: function(arg0) {
             const ret = arg0.repeat;
@@ -1737,6 +2101,14 @@ function __wbg_get_imports() {
         __wbg_submit_077c85cc28e36892: function(arg0, arg1, arg2) {
             arg0.submit(getArrayJsValueViewFromWasm0(arg1, arg2));
         },
+        __wbg_submit_0f2b3a26eb8d9b0a: function(arg0, arg1, arg2) {
+            const ret = arg0.submit(getArrayU8FromWasm0(arg1, arg2));
+            return ret;
+        },
+        __wbg_then_3a4f899454bcf8c9: function(arg0, arg1) {
+            const ret = arg0.then(arg1);
+            return ret;
+        },
         __wbg_then_656f253a5dd7d8ea: function(arg0, arg1, arg2) {
             const ret = arg0.then(arg1, arg2);
             return ret;
@@ -1761,61 +2133,71 @@ function __wbg_get_imports() {
             arg0.writeTexture(arg1, getArrayU8FromWasm0(arg2, arg3), arg4, arg5);
         }, arguments); },
         __wbindgen_generic_0000000000000001: function(arg0, arg1) {
-            // Cast intrinsic for `Closure(Closure { owned: true, function: Function { arguments: [Externref], shim_idx: 832, ret: Result(Unit), inner_ret: Some(Result(Unit)) }, mutable: true }) -> Externref`.
+            // Cast intrinsic for `Closure(Closure { owned: true, function: Function { arguments: [Externref], shim_idx: 1108, ret: Result(Unit), inner_ret: Some(Result(Unit)) }, mutable: true }) -> Externref`.
             const ret = makeMutClosure(arg0, arg1, wasm_bindgen__convert__closures_____invoke__h051e398faf21c7fc);
             return ret;
         },
         __wbindgen_generic_0000000000000002: function(arg0, arg1) {
-            // Cast intrinsic for `Closure(Closure { owned: true, function: Function { arguments: [F64], shim_idx: 273, ret: Unit, inner_ret: Some(Unit) }, mutable: true }) -> Externref`.
-            const ret = makeMutClosure(arg0, arg1, wasm_bindgen__convert__closures_____invoke__h13806c74c8c6cc77);
+            // Cast intrinsic for `Closure(Closure { owned: true, function: Function { arguments: [Externref], shim_idx: 919, ret: Result(Externref), inner_ret: Some(Result(Externref)) }, mutable: false }) -> Externref`.
+            const ret = makeClosure(arg0, arg1, wasm_bindgen__convert__closures_____invoke__h180790cd7efa7935);
             return ret;
         },
         __wbindgen_generic_0000000000000003: function(arg0, arg1) {
-            // Cast intrinsic for `Closure(Closure { owned: true, function: Function { arguments: [NamedExternref("Event")], shim_idx: 275, ret: Unit, inner_ret: Some(Unit) }, mutable: true }) -> Externref`.
-            const ret = makeMutClosure(arg0, arg1, wasm_bindgen__convert__closures_____invoke__h2583e1561a6a4f5e);
+            // Cast intrinsic for `Closure(Closure { owned: true, function: Function { arguments: [F64], shim_idx: 417, ret: Unit, inner_ret: Some(Unit) }, mutable: true }) -> Externref`.
+            const ret = makeMutClosure(arg0, arg1, wasm_bindgen__convert__closures_____invoke__h13806c74c8c6cc77);
             return ret;
         },
         __wbindgen_generic_0000000000000004: function(arg0, arg1) {
-            // Cast intrinsic for `Closure(Closure { owned: true, function: Function { arguments: [NamedExternref("GPUDevice")], shim_idx: 791, ret: Result(Unit), inner_ret: Some(Result(Unit)) }, mutable: true }) -> Externref`.
-            const ret = makeMutClosure(arg0, arg1, wasm_bindgen__convert__closures_____invoke__h74dcd338e80855ce);
+            // Cast intrinsic for `Closure(Closure { owned: true, function: Function { arguments: [NamedExternref("Event")], shim_idx: 419, ret: Unit, inner_ret: Some(Unit) }, mutable: true }) -> Externref`.
+            const ret = makeMutClosure(arg0, arg1, wasm_bindgen__convert__closures_____invoke__h2583e1561a6a4f5e);
             return ret;
         },
         __wbindgen_generic_0000000000000005: function(arg0, arg1) {
-            // Cast intrinsic for `Closure(Closure { owned: true, function: Function { arguments: [NamedExternref("KeyboardEvent")], shim_idx: 275, ret: Unit, inner_ret: Some(Unit) }, mutable: true }) -> Externref`.
-            const ret = makeMutClosure(arg0, arg1, wasm_bindgen__convert__closures_____invoke__h2583e1561a6a4f5e_35);
+            // Cast intrinsic for `Closure(Closure { owned: true, function: Function { arguments: [NamedExternref("GPUDevice")], shim_idx: 1067, ret: Result(Unit), inner_ret: Some(Result(Unit)) }, mutable: true }) -> Externref`.
+            const ret = makeMutClosure(arg0, arg1, wasm_bindgen__convert__closures_____invoke__h74dcd338e80855ce);
             return ret;
         },
         __wbindgen_generic_0000000000000006: function(arg0, arg1) {
-            // Cast intrinsic for `Closure(Closure { owned: true, function: Function { arguments: [NamedExternref("PointerEvent")], shim_idx: 275, ret: Unit, inner_ret: Some(Unit) }, mutable: true }) -> Externref`.
-            const ret = makeMutClosure(arg0, arg1, wasm_bindgen__convert__closures_____invoke__h2583e1561a6a4f5e_36);
+            // Cast intrinsic for `Closure(Closure { owned: true, function: Function { arguments: [NamedExternref("GPUDeviceLostInfo")], shim_idx: 1065, ret: Unit, inner_ret: Some(Unit) }, mutable: true }) -> Externref`.
+            const ret = makeMutClosure(arg0, arg1, wasm_bindgen__convert__closures_____invoke__hd0ea42e1fd5f3ce2);
             return ret;
         },
         __wbindgen_generic_0000000000000007: function(arg0, arg1) {
-            // Cast intrinsic for `Closure(Closure { owned: true, function: Function { arguments: [NamedExternref("WheelEvent")], shim_idx: 275, ret: Unit, inner_ret: Some(Unit) }, mutable: true }) -> Externref`.
-            const ret = makeMutClosure(arg0, arg1, wasm_bindgen__convert__closures_____invoke__h2583e1561a6a4f5e_37);
+            // Cast intrinsic for `Closure(Closure { owned: true, function: Function { arguments: [NamedExternref("KeyboardEvent")], shim_idx: 419, ret: Unit, inner_ret: Some(Unit) }, mutable: true }) -> Externref`.
+            const ret = makeMutClosure(arg0, arg1, wasm_bindgen__convert__closures_____invoke__h2583e1561a6a4f5e_55);
             return ret;
         },
         __wbindgen_generic_0000000000000008: function(arg0, arg1) {
-            // Cast intrinsic for `Closure(Closure { owned: true, function: Function { arguments: [NamedExternref("any")], shim_idx: 791, ret: Result(Unit), inner_ret: Some(Result(Unit)) }, mutable: true }) -> Externref`.
-            const ret = makeMutClosure(arg0, arg1, wasm_bindgen__convert__closures_____invoke__h74dcd338e80855ce_38);
+            // Cast intrinsic for `Closure(Closure { owned: true, function: Function { arguments: [NamedExternref("PointerEvent")], shim_idx: 419, ret: Unit, inner_ret: Some(Unit) }, mutable: true }) -> Externref`.
+            const ret = makeMutClosure(arg0, arg1, wasm_bindgen__convert__closures_____invoke__h2583e1561a6a4f5e_56);
             return ret;
         },
         __wbindgen_generic_0000000000000009: function(arg0, arg1) {
-            // Cast intrinsic for `Closure(Closure { owned: true, function: Function { arguments: [NamedExternref("undefined")], shim_idx: 791, ret: Result(Unit), inner_ret: Some(Result(Unit)) }, mutable: true }) -> Externref`.
-            const ret = makeMutClosure(arg0, arg1, wasm_bindgen__convert__closures_____invoke__h74dcd338e80855ce_39);
+            // Cast intrinsic for `Closure(Closure { owned: true, function: Function { arguments: [NamedExternref("WheelEvent")], shim_idx: 419, ret: Unit, inner_ret: Some(Unit) }, mutable: true }) -> Externref`.
+            const ret = makeMutClosure(arg0, arg1, wasm_bindgen__convert__closures_____invoke__h2583e1561a6a4f5e_57);
             return ret;
         },
-        __wbindgen_generic_000000000000000a: function(arg0) {
+        __wbindgen_generic_000000000000000a: function(arg0, arg1) {
+            // Cast intrinsic for `Closure(Closure { owned: true, function: Function { arguments: [NamedExternref("any")], shim_idx: 1067, ret: Result(Unit), inner_ret: Some(Result(Unit)) }, mutable: true }) -> Externref`.
+            const ret = makeMutClosure(arg0, arg1, wasm_bindgen__convert__closures_____invoke__h74dcd338e80855ce_58);
+            return ret;
+        },
+        __wbindgen_generic_000000000000000b: function(arg0, arg1) {
+            // Cast intrinsic for `Closure(Closure { owned: true, function: Function { arguments: [NamedExternref("undefined")], shim_idx: 1067, ret: Result(Unit), inner_ret: Some(Result(Unit)) }, mutable: true }) -> Externref`.
+            const ret = makeMutClosure(arg0, arg1, wasm_bindgen__convert__closures_____invoke__h74dcd338e80855ce_59);
+            return ret;
+        },
+        __wbindgen_generic_000000000000000c: function(arg0) {
             // Cast intrinsic for `F64 -> Externref`.
             const ret = arg0;
             return ret;
         },
-        __wbindgen_generic_000000000000000b: function(arg0, arg1) {
+        __wbindgen_generic_000000000000000d: function(arg0, arg1) {
             // Cast intrinsic for `Ref(Slice(U8)) -> NamedExternref("Uint8Array")`.
             const ret = getArrayU8FromWasm0(arg0, arg1);
             return ret;
         },
-        __wbindgen_generic_000000000000000c: function(arg0, arg1) {
+        __wbindgen_generic_000000000000000e: function(arg0, arg1) {
             // Cast intrinsic for `Ref(String) -> Externref`.
             const ret = getStringFromWasm0(arg0, arg1);
             return ret;
@@ -1832,6 +2214,7 @@ function __wbg_get_imports() {
     return {
         __proto__: null,
         "./helios_demo_bg.js": import0,
+        "./snippets/helios-demo-5d200bae53c04dab/src/bake_worker.js": import1,
     };
 }
 
@@ -1839,16 +2222,20 @@ function wasm_bindgen__convert__closures_____invoke__h2583e1561a6a4f5e(arg0, arg
     wasm.wasm_bindgen__convert__closures_____invoke__h2583e1561a6a4f5e(arg0, arg1, arg2);
 }
 
-function wasm_bindgen__convert__closures_____invoke__h2583e1561a6a4f5e_35(arg0, arg1, arg2) {
-    wasm.wasm_bindgen__convert__closures_____invoke__h2583e1561a6a4f5e_35(arg0, arg1, arg2);
+function wasm_bindgen__convert__closures_____invoke__hd0ea42e1fd5f3ce2(arg0, arg1, arg2) {
+    wasm.wasm_bindgen__convert__closures_____invoke__hd0ea42e1fd5f3ce2(arg0, arg1, arg2);
 }
 
-function wasm_bindgen__convert__closures_____invoke__h2583e1561a6a4f5e_36(arg0, arg1, arg2) {
-    wasm.wasm_bindgen__convert__closures_____invoke__h2583e1561a6a4f5e_36(arg0, arg1, arg2);
+function wasm_bindgen__convert__closures_____invoke__h2583e1561a6a4f5e_55(arg0, arg1, arg2) {
+    wasm.wasm_bindgen__convert__closures_____invoke__h2583e1561a6a4f5e_55(arg0, arg1, arg2);
 }
 
-function wasm_bindgen__convert__closures_____invoke__h2583e1561a6a4f5e_37(arg0, arg1, arg2) {
-    wasm.wasm_bindgen__convert__closures_____invoke__h2583e1561a6a4f5e_37(arg0, arg1, arg2);
+function wasm_bindgen__convert__closures_____invoke__h2583e1561a6a4f5e_56(arg0, arg1, arg2) {
+    wasm.wasm_bindgen__convert__closures_____invoke__h2583e1561a6a4f5e_56(arg0, arg1, arg2);
+}
+
+function wasm_bindgen__convert__closures_____invoke__h2583e1561a6a4f5e_57(arg0, arg1, arg2) {
+    wasm.wasm_bindgen__convert__closures_____invoke__h2583e1561a6a4f5e_57(arg0, arg1, arg2);
 }
 
 function wasm_bindgen__convert__closures_____invoke__h051e398faf21c7fc(arg0, arg1, arg2) {
@@ -1865,18 +2252,26 @@ function wasm_bindgen__convert__closures_____invoke__h74dcd338e80855ce(arg0, arg
     }
 }
 
-function wasm_bindgen__convert__closures_____invoke__h74dcd338e80855ce_38(arg0, arg1, arg2) {
-    const ret = wasm.wasm_bindgen__convert__closures_____invoke__h74dcd338e80855ce_38(arg0, arg1, arg2);
+function wasm_bindgen__convert__closures_____invoke__h74dcd338e80855ce_58(arg0, arg1, arg2) {
+    const ret = wasm.wasm_bindgen__convert__closures_____invoke__h74dcd338e80855ce_58(arg0, arg1, arg2);
     if (ret[1]) {
         throw takeFromExternrefTable0(ret[0]);
     }
 }
 
-function wasm_bindgen__convert__closures_____invoke__h74dcd338e80855ce_39(arg0, arg1, arg2) {
-    const ret = wasm.wasm_bindgen__convert__closures_____invoke__h74dcd338e80855ce_39(arg0, arg1, arg2);
+function wasm_bindgen__convert__closures_____invoke__h74dcd338e80855ce_59(arg0, arg1, arg2) {
+    const ret = wasm.wasm_bindgen__convert__closures_____invoke__h74dcd338e80855ce_59(arg0, arg1, arg2);
     if (ret[1]) {
         throw takeFromExternrefTable0(ret[0]);
     }
+}
+
+function wasm_bindgen__convert__closures_____invoke__h180790cd7efa7935(arg0, arg1, arg2) {
+    const ret = wasm.wasm_bindgen__convert__closures_____invoke__h180790cd7efa7935(arg0, arg1, arg2);
+    if (ret[2]) {
+        throw takeFromExternrefTable0(ret[1]);
+    }
+    return takeFromExternrefTable0(ret[0]);
 }
 
 function wasm_bindgen__convert__closures_____invoke__h03475afc31e9586f(arg0, arg1, arg2, arg3) {
@@ -1913,6 +2308,9 @@ const __wbindgen_enum_GpuCompareFunction = ["never", "less", "equal", "less-equa
 
 
 const __wbindgen_enum_GpuCullMode = ["none", "front", "back"];
+
+
+const __wbindgen_enum_GpuDeviceLostReason = ["unknown", "destroyed"];
 
 
 const __wbindgen_enum_GpuFilterMode = ["nearest", "linear"];
@@ -2114,6 +2512,31 @@ function isLikeNone(x) {
     return x === undefined || x === null;
 }
 
+function makeClosure(arg0, arg1, f) {
+    const state = { a: arg0, b: arg1, cnt: 1 };
+    const real = (...args) => {
+
+        // First up with a closure we increment the internal reference
+        // count. This ensures that the Rust closure environment won't
+        // be deallocated while we're invoking it.
+        state.cnt++;
+        try {
+            return f(state.a, state.b, ...args);
+        } finally {
+            real._wbg_cb_unref();
+        }
+    };
+    real._wbg_cb_unref = () => {
+        if (--state.cnt === 0) {
+            wasm.__wbindgen_destroy_closure(state.a, state.b);
+            state.a = 0;
+            CLOSURE_DTORS.unregister(state);
+        }
+    };
+    CLOSURE_DTORS.register(real, state, state);
+    return real;
+}
+
 function makeMutClosure(arg0, arg1, f) {
     const state = { a: arg0, b: arg1, cnt: 1 };
     const real = (...args) => {
@@ -2145,6 +2568,13 @@ function makeMutClosure(arg0, arg1, f) {
 function passArray32ToWasm0(arg, malloc) {
     const ptr = malloc(arg.length * 4, 4) >>> 0;
     getUint32ArrayMemory0().set(arg, ptr / 4);
+    WASM_VECTOR_LEN = arg.length;
+    return ptr;
+}
+
+function passArray8ToWasm0(arg, malloc) {
+    const ptr = malloc(arg.length * 1, 1) >>> 0;
+    getUint8ArrayMemory0().set(arg, ptr / 1);
     WASM_VECTOR_LEN = arg.length;
     return ptr;
 }
